@@ -38,10 +38,12 @@ def stream_data(main_code):
     procedure_name = f'public.load_driver_data_from_csv'
     csv_path = pathDrivers
     main_code.sql_connection(procedure_name=procedure_name, csv_path=csv_path)
+    print(f'-->End<--')
+    main_code.logger.info(f'-->End<--')
 
 
 if __name__ == "__main__":
 
     main_code = RequestsClass()
-    logging.basicConfig(level=logging.DEBUG)
+    main_code.logger.info(f'-->Start<--')
     stream_data(main_code)
