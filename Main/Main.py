@@ -1,6 +1,6 @@
-import pandas
+import os
+from dotenv import load_dotenv, dotenv_values
 import requests
-import logging
 import psycopg2
 import time
 
@@ -12,6 +12,7 @@ class Main:
         self.Session = None
         self.sql_cursor = None
         self.start = time.time()
+        self.env_load = load_dotenv()
 
     def __del__(self):
         self.end = time.time()
@@ -19,11 +20,11 @@ class Main:
 
     def sql_connection(self, procedure_name=None, csv_path=None):
         conn_params = {
-            'dbname': 'FormulaOne',
-            'user': 'postgres',
-            'password': 'postgres',
-            'host': 'localhost',
-            'port': '5432'
+            'dbname': os.getenv('dbname'),
+            'user': os.getenv('user_db'),
+            'password': os.getenv('pass_db'),
+            'host': os.getenv('host_name'),
+            'port': os.getenv('port')
         }
         try:
             conn = psycopg2.connect(**conn_params)

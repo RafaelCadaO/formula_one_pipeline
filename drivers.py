@@ -31,7 +31,6 @@ def stream_data(main_code):
     pathDrivers = f'{pathDest}Drivers.csv'
     drivers = get_drivers(main_code)
     df_drivers = pandas.DataFrame(drivers)
-    print(df_drivers.columns)
 
     df_drivers.to_csv(pathDrivers, encoding='utf-8', index=False, header=True, sep='\t')
     time.sleep(5)
